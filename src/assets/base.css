@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: Noto;
+}
+a {
+  text-decoration: none;
+}
+ul,
+li {
+  list-style: none;
+}
+img {
+  max-width: 100%;
+}
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+/* base */
+h2 {
+  margin: 10px 0;
+}
+/* 自訂 untilities */
+.container {
+  margin: 0 auto;
+  max-width: 1320px;
+  padding: 0 12px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
