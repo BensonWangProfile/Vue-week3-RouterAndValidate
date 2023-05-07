@@ -5,7 +5,9 @@
       <ul class="menu">
         <!-- <li><a href="#chairs">Chairs</a></li> -->
         <li v-for="(product, key) in products" :key="key">
-          <RouterLink :to="`/products/${product.item}`">{{ product.item }}</RouterLink>
+          <RouterLink :to="`/products/${product.item}`" class="nav-link">{{
+            product.item
+          }}</RouterLink>
         </li>
       </ul>
     </nav>

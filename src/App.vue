@@ -12,10 +12,8 @@ export default {
 <template>
   <div>
     <HomeView />
+    <!-- <BackendView /> -->
   </div>
-  <!-- <div>
-    <BackendView />
-  </div> -->
 </template>
 
 <style scoped></style>

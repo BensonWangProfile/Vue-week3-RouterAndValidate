@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior() {
+    return { x: 0, y: 0, scrollBehavior: 'smooth' }
+  },
   routes: [
     {
       path: '/',
@@ -34,9 +37,8 @@ const router = createRouter({
         {
           path: ':item', // 預留 接後端｜api 使用
           name: 'item',
-          props: {
-            message: 'Welcome to page!'
-          },
+          props: true,
+          // {  message: 'Welcome to page!'},
           component: () => import('../views/ProductView.vue')
         }
       ]
