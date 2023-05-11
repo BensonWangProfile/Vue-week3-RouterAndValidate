@@ -52,4 +52,18 @@ const router = createRouter({
   ]
 })
 
+// backend 權限設置
+// router.beforeEach((to, from, next) => {
+//   console.log(to, from)
+//   if (to.path === '/backend') {
+//     if (localStorage.getItem('name') === 'benson') {
+//       next()
+//     } else {
+//       alert('未開放權限')
+//     }
+//   } else {
+//     next()
+//   }
+// })
+
 export default router

@@ -5,9 +5,20 @@
       <ul class="menu">
         <!-- <li><a href="#chairs">Chairs</a></li> -->
         <li v-for="(product, key) in products" :key="key">
-          <RouterLink :to="`/products/${product.item}`" class="nav-link">{{
+          <!-- <RouterLink :to="`/products/${product.item}`" class="nav-link">{{
             product.item
-          }}</RouterLink>
+          }}</RouterLink> -->
+
+          <RouterLink
+            :to="{
+              path: `/products/${product.item}`,
+              query: {
+                id: key + 1
+              }
+            }"
+            class="nav-link"
+            >{{ product.item }}</RouterLink
+          >
         </li>
       </ul>
     </nav>

@@ -1,6 +1,13 @@
 <template>
   <div>
-    {{ item }}
+    <Loading
+      v-model:active="isLoading"
+      :can-cancel="true"
+      :is-full-page="fullPage"
+      loader="dots"
+      :width="width"
+    />
+
     <ul class="row px-5">
       <li v-for="(card, key) in cardList" :key="key" class="col-4">
         <div class="card">
@@ -13,9 +20,9 @@
             <p>
               {{ card.price }}
             </p>
-            <p class="card-text">
+            <!-- <p class="card-text">
               {{ card.description }}
-            </p>
+            </p> -->
           </div>
         </div>
       </li>
@@ -24,13 +31,22 @@
 </template>
 <script>
 import axios from 'axios'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
+
 export default {
   props: ['item'],
   data() {
     return {
-      cardList: []
+      id: this.$route.query.id,
+      cardList: [],
+
+      isLoading: false,
+      fullPage: true,
+      width: 30
     }
   },
+  components: { Loading },
   methods: {
     // option api 如何用 async await
     // async fetchApiData() {
@@ -45,15 +61,29 @@ export default {
       axios
         .get('https://fakestoreapi.com/products?limit=5')
         .then((res) => {
-          console.log(res)
-          this.cardList = res.data
+          this.isLoading = true
+          const fetchData = res.data
+          return fetchData
+        })
+        .then((data) => {
+          setTimeout(() => {
+            this.isLoading = false
+          }, 300)
+          this.cardList = data.filter((item) => {
+            return item.id === this.id * 1
+          })
         })
         .catch((err) => {
           console.log(err)
         })
-    },
-    emitProductData() {
-      this.$emit('ProductData', this.cardList)
+    }
+  },
+  watch: {
+    '$route.query.id': {
+      handler(newValue) {
+        this.id = newValue
+        this.fetchApiData()
+      }
     }
   },
   mounted() {
